@@ -33,9 +33,9 @@ def main2():
 
 def main3():
     from argparse import ArgumentParser
-    parser = ArgumentParser(description = "custom script for couting the matching words in a file ")
+    parser = ArgumentParser(description = "custom script for couting the matching words in a file")
 
-    parser.add_argument("--string", "-s", type=str)
+    parser.add_argument("--filepath", "-f", type=str)
     parser.add_argument("--target", "-t", type=str)
     # parser.add_argument("--insensitive", "-i", action="store_true", help="makes case insensitive")
     # action = "store_true", is the flag is set i.e '-i' is written in the command then assign the value true 
@@ -53,7 +53,7 @@ def main3():
     }
 
     if (len(values) < 2): 
-        raise ValueError("Somethins is up with arguments correct it")
+        print("Something is up with arguments")
         sys.exit(1)
 
     # if an argument is not passed then it is set to None by defualt, 
@@ -61,8 +61,8 @@ def main3():
     """
         args actually looks like this, when you print(args), and len(args) throws an error 
         
-        $ python count.py --string "devarshi is a good boyd" --target "deva"
-        Namespace(string='devarshi is a good boyd', target='deva')
+        $ python count.py --filepath "./sample.txt" --target "deva"
+        Namespace(filepath='./sample.txt', target='deva')
 
         to convert it into dictionary use vars(args) and now you can use the len function to determine the number of values inside it
     """
@@ -70,6 +70,12 @@ def main3():
 
     # if (len(vars(args)) < 2): 
 
+    with open(args.filepath, "r") as file: 
+        string = file.read()
+    
+    substring = args.target
+    count = string.split().count(substring)
+    print(f"The number of occurances of {substring} in {string} is {count}")
         
     
 if __name__ == "__main__":

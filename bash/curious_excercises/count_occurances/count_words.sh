@@ -8,7 +8,7 @@ awk -v target=$substring  \
 '   
     BEGIN {
         count = 0
-        iteration = 1
+        iteration = 0
     }
 
     {
